@@ -2,7 +2,7 @@
 #include<stdio.h>
 
 #define MAX 10
-#define inputfile "D:/test3.txt"
+#define inputfile "D:/test.txt"
 #define VOCUC 1000
 typedef struct GRAPH
 {	int n;
@@ -35,7 +35,7 @@ void XuatMaTranKe(DOTHI g)
 		printf("\n");
 	}
 }
-int KiemTraMaTrankeHopLe(DOTHI g)
+/*int KiemTraMaTrankeHopLe(DOTHI g)
 {
 	int i;
 	for(i=1;i<=g.n;i++)
@@ -206,7 +206,7 @@ int KTDuongDiEuler(DOTHI g)
 	for(i=stack.size-1;i>=0;i--)
 		printf("%d",stack.array[i]+1);
 	return 1;	
-}
+}*/
 int LuuVet[MAX];
 int ChuaXet[MAX];
 int DoDaiDuongDiToi[MAX];
@@ -255,7 +255,7 @@ void Dijkstra(int S, int F, DOTHI g)
 	}
 	if(ChuaXet[F]==1)
 	{
-		printf("duong di ngan nhat tu %d den %d\n",S,F);
+		printf("\nduong di ngan nhat tu %d den %d\n",S,F);
 		i=F;
 		printf("%d",F);
 		while(LuuVet[i]!=S)
@@ -268,12 +268,12 @@ void Dijkstra(int S, int F, DOTHI g)
 	}
 	else
 	{
-		printf("ko co duong di tu dinh %d den dinh %d",S,F);
+		printf("\nko co duong di tu dinh %d den dinh %d",S,F);
 	}
 }
 int Sau_Nut[MAX][MAX];
 int L[MAX][MAX];
-void Floyd(DOTHI g)
+void Floyd(int S, int F, DOTHI g)
 {
 	int i,j;
 	for(i=1;i<=g.n;i++)
@@ -306,17 +306,16 @@ void Floyd(DOTHI g)
 			}
 		}
 	}
-	int S,F;
-	printf("\nnhap dinh bat dau");
-	scanf("%d",&S);
-	printf("\nnhap dinh ket thuc");
-	scanf("%d",&F);
+	//printf("\nnhap dinh bat dau");
+	//scanf("%d",&S);
+	//printf("\nnhap dinh ket thuc");
+	//scanf("%d",&F);
 	if(Sau_Nut[S][F]==-1)
 	{
 		printf("ko co duong di");
 	}
 	else{
-		printf("duong di ngan nhat tu dinh %d den dinh %d\n",S,F);
+		printf("\nduong di ngan nhat tu dinh %d den dinh %d\n",S,F);
 		printf("\t%d",S);
 		int u=S;
 		while(Sau_Nut[u][F]!=F)
@@ -338,7 +337,7 @@ int main()
 		printf("Da lay thong tin do thi tu file thanh cong.\n\n");
 		XuatMaTranKe(g);
 	}
-	if(KiemTraMaTrankeHopLe(g)==1)
+	/*if(KiemTraMaTrankeHopLe(g)==1)
 	{
 		printf("ma tran hop le ");
 		
@@ -360,15 +359,15 @@ int main()
 		{
 			printf("\nko co duong di euler trong do thi ");
 		}
-	}
+	}*/
 	int S,F;
 	printf("\nnhap dinh bat dau ");
 	scanf("%d",&S);
 	printf("\nnhap vao dinh ket thuc ");
 	scanf("%d",&F);
-	printf("thuat toan Dijkstra");
+	printf("\nthuat toan Dijkstra");
 	Dijkstra(S,F,g);
-	printf("thuat toan floyd");
-	Floyd(g);
+	printf("\nthuat toan floyd");
+	Floyd(S,F,g);
 	return 0;
 }
